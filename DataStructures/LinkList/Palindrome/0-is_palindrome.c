@@ -10,18 +10,22 @@
 int is_palindrome(listint_t **head)
 {
 	listint_t *aux = NULL;
-	listint_t *tmp = *head;
+	listint_t *tmp = NULL;
 	
 	if(head == NULL)
 		return 1;
 
+	tmp = copy_list(head);	
 	aux = reverse_listint(head);
-	
+
 	while(tmp != NULL ){
+		
 		if( tmp->n != aux->n ){
+			
 			return 0;
 		}
 		tmp = tmp->next;
+		aux = aux->next;
 	}
 
 	return 1;
@@ -49,3 +53,17 @@ listint_t *reverse_listint(listint_t **head)
 	return (*head);
 }
 
+
+listint_t *copy_list(listint_t **head)
+{
+	listint_t *temp = *head;
+	listint_t *new;
+	
+	while (temp != NULL)
+	{
+		add_nodeint_end(&new, temp->n);
+		temp = temp->next;
+	}
+	
+	return (new);
+}
