@@ -9,7 +9,22 @@
 */
 int is_palindrome(listint_t **head)
 {
+	listint_t *aux = NULL;
+	listint_t *tmp = *head;
+	
+	if(head == NULL)
+		return 1;
 
+	aux = reverse_listint(head);
+	
+	while(tmp != NULL ){
+		if( tmp->n != aux->n ){
+			return 0;
+		}
+		tmp = tmp->next;
+	}
+
+	return 1;
 }
 
 /**
